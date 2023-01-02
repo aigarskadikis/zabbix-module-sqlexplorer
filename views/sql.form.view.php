@@ -33,7 +33,10 @@ $grid->addItem([
             ->setId('fav')
             ->setValue($data['fav'])
             ->addOptions(CSelect::createOptionsFromArray(array_column($data['queries'], 'title')))
-            ->setWidth(ZBX_TEXTAREA_BIG_WIDTH),
+	    ->setWidth(ZBX_TEXTAREA_BIG_WIDTH),
+        (new CButton('update_query', _('Save')))
+            ->addClass(ZBX_STYLE_BTN_ALT)
+            ->setEnabled($data['fav'] > 0),
         (new CButton('delete_query', _('Remove')))
             ->addClass(ZBX_STYLE_BTN_ALT)
             ->setEnabled($data['fav'] > 0),
@@ -46,10 +49,7 @@ $grid->addItem([
         (new CTextBox('name', $data['name']))
             ->setAttribute('autocomplete', 'off')
             ->setWidth(ZBX_TEXTAREA_BIG_WIDTH),
-        (new CButton('update_query', _('Update')))
-            ->addClass(ZBX_STYLE_BTN_ALT)
-            ->setEnabled($data['fav'] > 0),
-        (new CButton('save_query', _('New')))
+        (new CButton('save_query', _('Save As')))
             ->addClass(ZBX_STYLE_BTN_ALT)
             ->setEnabled(trim($data['name']) !== '')
     ]))->addClass('margin-between'))
